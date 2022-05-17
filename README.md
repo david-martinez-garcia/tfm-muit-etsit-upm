@@ -1,9 +1,12 @@
-<p align="left">
-  <img src="https://github.com/martinezgarciadavid/tfm-muit-etsit-upm/blob/main/Recursos/Im%C3%A1genes/etsit_logo.png" width="250"/>
-</p>
 
-<p align="right">
-  <img src="https://github.com/martinezgarciadavid/tfm-muit-etsit-upm/blob/main/Recursos/Im%C3%A1genes/upm_logo.png" width="250"/>
-</p>
+<div align="center"><h1>Máster Universitario en Ingeniería de Telecomunicación (MUIT)</h1></div>
 
-# Trabajo Fin de Máster (TFM) - Máster Universitario en Ingeniería de Telecomunicación (MUIT)
+<div align="center"><h1>Trabajo Fin de Máster (TFM)</h1></div>
+
+<div align="center"><h3>Desarrollo de mecanismos de redirección de tráfico en redes de campus basadas en SDN para distribución de contenido multimedia</h3></div>
+
+**Autor**: David Martínez García
+
+**Tutores**: Carlos Mariano Lentisco Sánchez y Luis Bellido Triana
+
+**Departamento**: Departamento de Ingeniería de Sistemas Telemáticos (DIT)
