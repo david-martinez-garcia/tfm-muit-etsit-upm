@@ -1,5 +1,5 @@
 <p align="left">
-  <img src="https://github.com/martinezgarciadavid/tfm-muit-etsit-upm/blob/main/Recursos/Im%C3%A1genes/etsit_logo.png"/>
+  <img src="https://github.com/martinezgarciadavid/tfm-muit-etsit-upm/blob/main/Recursos/Im%C3%A1genes/etsit_logo.png" width="200"/>
 </p>
 
 <p align="right">
