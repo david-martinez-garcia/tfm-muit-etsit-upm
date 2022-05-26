@@ -1,4 +1,4 @@
-<div align="center"><img src="https://github.com/martinezgarciadavid/tfm-muit-etsit-upm/blob/main/etsit_logo.png" width="400"/></div>
+<div align="center"><img src="https://github.com/martinezgarciadavid/tfm-muit-etsit-upm/blob/main/Recursos/etsit_logo.png" width="400"/></div>
 
 <div align="center"><h1>Universidad Politécnica de Madrid</br>Escuela Técnica Superior de Ingenieros de Telecomunicación</br>ETSIT-UPM</h1></div>
 
