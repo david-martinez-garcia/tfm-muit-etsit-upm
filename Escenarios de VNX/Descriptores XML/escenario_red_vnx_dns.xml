@@ -112,7 +112,7 @@ David Martínez García
   
   <!-- Controlador ONOS con Orquestador (aplicación de ONOS) -->
   <vm name="onos" type="lxc" arch="x86_64">
-    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64_onos</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <mem>2G</mem>
     <if id="1" net="central">
       <mac>00:00:00:00:05:00</mac>
@@ -362,7 +362,7 @@ David Martínez García
   
   <!-- vProxy1 -->
   <vm name="vProxy1" type="lxc" arch="x86_64">
-    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64_ats</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <mem>1G</mem>
     <if id="1" net="mec1">
       <mac>00:00:00:00:02:01</mac>
@@ -403,7 +403,7 @@ David Martínez García
 
   <!-- vProxy2 -->
   <vm name="vProxy2" type="lxc" arch="x86_64">
-    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64_ats</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <mem>1G</mem>
     <if id="1" net="mec2">
       <mac>00:00:00:00:02:02</mac>
