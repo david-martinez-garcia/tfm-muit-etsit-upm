@@ -1,0 +1,3 @@
+ONOS_USER=sdn
+# Optional: add any apps here that you wish to activate by default
+ONOS_APPS=org.onosproject.drivers,org.onosproject.gui2
