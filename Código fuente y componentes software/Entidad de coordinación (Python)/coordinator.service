@@ -1,0 +1,10 @@
+# Referencia de ayuda: https://stackoverflow.com/a/54989484
+
+[Unit]
+Description = Coordinator - Python Flask
+
+[Service]
+ExecStart = /root/coordinator.sh
+
+[Install]
+WantedBy = multi-user.target

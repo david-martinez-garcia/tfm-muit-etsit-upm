@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+~~~~~~~~~~~~~~~~
+Escenario de VNX
+~~~~~~~~~~~~~~~~
+
+Name: escenario_red_vnx_tcp
+Description:
+
+Desarrollo de mecanismos de redirección de tráfico en redes de campus basadas en SDN para distribución de contenido multimedia.
+Escenario para validación y realización de pruebas.
+
+VERSIÓN CON REDIRECCIÓN POR PROTOCOLO TCP (SYN).
+
+This file is part of the Virtual Networks over LinuX (VNX) Project distribution. 
+(www: http://www.dit.upm.es/vnx - e-mail: vnx@dit.upm.es) 
+
+Departamento de Ingeniería de Sistemas Telemáticos (DIT)
+Universidad Politécnica de Madrid
+SPAIN
+
+David Martínez García
+
+-->
+
+<vnx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/usr/share/xml/vnx/vnx-2.00.xsd">
+  <global>
+    <version>2.0</version>
+    <scenario_name>escenario_red_vnx_tcp</scenario_name>
+    <vm_mgmt type="none" />
+        
+    <vm_defaults>
+       <console id="0" display="no"/>
+       <console id="1" display="yes"/>
+    </vm_defaults>
+	
+    <!-- SPANNING TREE PROTOCOL HABILITADO EN TODOS LOS SWITCHES -->
+    <netconfig stp="on"/>
+  </global>
+  
+  <!-- REDES Y SWITCHES -->
+  
+  <!-- Red de gestión para acceso a los contenedores/máquinas virtuales -->
+  <net name="netmgt0" mode="virtual_bridge" />
+
+  <!-- Red de gestión, para tráfico de control OpenFlow con switch del nodo MEC 1 -->
+  <net name="netmgt1" mode="virtual_bridge" />
+
+  <!-- Red de gestión, para tráfico de control OpenFlow con switch del nodo MEC 2 -->
+  <net name="netmgt2" mode="virtual_bridge" />
+
+  <!-- Red de gestión, para tráfico de control OpenFlow con switch de interconexión -->
+  <net name="netmgt3" mode="virtual_bridge" />
+
+  <!-- Red de gestión, para tráfico de control OpenFlow con switch del nodo central -->
+  <net name="netmgt4" mode="virtual_bridge" />
+
+  <!-- Red virbr0 para salida a Internet -->
+  <net name="virbr0" mode="virtual_bridge" managed="no" />
+
+  <!-- Red/switch del nodo MEC 1 -->
+  <net name="mec1" mode="openvswitch" hwaddr="00:00:00:00:00:01" controller="tcp:172.16.1.50:6653" of_version="OpenFlow13" fail_mode="secure" />
+
+  <!-- Red/switch del nodo MEC 2 -->
+  <net name="mec2" mode="openvswitch" hwaddr="00:00:00:00:00:02" controller="tcp:172.16.2.50:6653" of_version="OpenFlow13" fail_mode="secure" />
+
+  <!-- Switch de interconexión -->
+  <net name="itc" mode="openvswitch" hwaddr="00:00:00:00:00:03" controller="tcp:172.16.3.50:6653" of_version="OpenFlow13" fail_mode="secure">
+    <!-- Conexiones con switches de nodos MEC 1 y MEC 2 -->
+    <connection name="itcmec1" net="mec1" />
+    <connection name="itcmec2" net="mec2" />
+  </net>
+
+  <!-- Switch de nodo central -->
+  <net name="central" mode="openvswitch" hwaddr="00:00:00:00:00:04" controller="tcp:172.16.4.50:6653" of_version="OpenFlow13" fail_mode="secure">
+    <!-- Conexión con switch de interconexión -->
+    <connection name="ctrlitc" net="itc" />
+  </net>
+
+  <!-- HOSTS -->
+
+  <!-- Router para salida a Internet -->
+  <vm name="router" type="lxc" arch="x86_64">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <mem>512M</mem>
+    <if id="1" net="central">
+      <mac>00:00:00:FF:00:01</mac>
+      <ipv4>10.0.0.1/24</ipv4>
+    </if>
+    <if id="2" net="central">
+      <mac>00:00:00:FF:00:01</mac>
+      <ipv4>10.0.0.254/24</ipv4>
+    </if>
+    <if id="7" net="virbr0">
+      <mac>00:00:00:FF:00:02</mac>
+      <ipv4>dhcp</ipv4>
+    </if>
+    <if id="8" net="netmgt0">
+      <ipv4>172.16.0.1/24</ipv4>
+    </if>
+    
+    <!-- Habilitar el reenvío de IP -->
+    <forwarding type="ip"/>
+
+    <!-- En el arranque, se copia el fichero vnx_config_nat para configurar NAT en este router -->
+    <filetree seq="on_boot" root="/usr/bin/" perms="755">/usr/bin/vnx_config_nat</filetree>
+    
+    <!-- En el arranque, obtener IP por DHCP en la interfaz eth7 (virbr0) y configurar NAT entre eth1 y eth7 -->
+    <exec seq="on_boot" type="verbatim">
+       dhclient eth7
+       /usr/bin/vnx_config_nat eth1 eth7
+    </exec>
+  </vm>
+  
+  <!-- Controlador ONOS con Orquestador (aplicación de ONOS) -->
+  <vm name="onos" type="lxc" arch="x86_64">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64_onos</filesystem>
+    <mem>2G</mem>
+    <if id="1" net="central">
+      <mac>00:00:00:00:05:00</mac>
+      <ipv4>10.0.0.50/24</ipv4>
+    </if>
+    <if id="2" net="netmgt1">
+      <ipv4>172.16.1.50/24</ipv4>
+    </if>
+    <if id="3" net="netmgt2">
+      <ipv4>172.16.2.50/24</ipv4>
+    </if>
+    <if id="4" net="netmgt3">
+      <ipv4>172.16.3.50/24</ipv4>
+    </if>
+    <if id="5" net="netmgt4">
+      <ipv4>172.16.4.50/24</ipv4>
+    </if>
+    <if id="8" net="netmgt0">
+      <ipv4>172.16.0.50/24</ipv4>
+    </if>
+
+    <!-- Ruta por defecto para salir a Internet -->
+    <route type="ipv4" gw="10.0.0.1">default</route>
+
+    <!-- Copiar los binarios de ONOS y la aplicación precompilada con el Orquestador ICN -->
+    <filetree seq="on_boot" root="/root/">conf/onos/orquestador-1.0.0.oar</filetree>
+    <filetree seq="on_boot" root="/opt/">conf/onos/onos-2.7.0.tar.gz</filetree>
+    <filetree seq="on_boot" root="/opt/">conf/onos/options</filetree>
+    
+    <!-- Configurar el servidor de DNS (resolver) -->
+    <exec seq="on_boot" type="verbatim" ostype="system">
+        echo "nameserver 10.0.0.60" > /etc/resolv.conf
+    </exec>
+
+    <!-- Instalar y arrancar ONOS como servicio en el arranque del contenedor -->
+    <!-- REFERENCIA DE AYUDA: https://stackoverflow.com/questions/60744352/onos-service-start-frameworkevent-error-and-gui-not-ready-yet -->
+    <!-- En el arranque se limpia SSH para evitar problemas en el acceso -->
+    <exec seq="start-onos" type="verbatim" ostype="system">
+        cd /opt/
+        tar xfz onos-2.7.0.tar.gz
+        mv onos-2.7.0/ onos/
+        cp /opt/options /opt/onos/options
+        chmod 777 -R /opt/onos
+        rm -Rf /root/.ssh/
+        cp /opt/onos/init/onos.initd /etc/init.d/onos
+	mkdir -p /etc/init/
+        cp /opt/onos/init/onos.conf /etc/init/onos.conf
+        cp /opt/onos/init/onos.service /etc/systemd/system/
+        systemctl daemon-reload
+        systemctl enable onos
+        systemctl restart onos.service
+    </exec>
+
+    <!-- Activar las aplicaciones base de ONOS necesarias -->
+    <!-- NOTA: Ejecutar este comando una vez haya arrancado ONOS de manera completa. De lo contrario no podrá accederse a la CLI para activar las apps base -->
+    <!-- AYUDA SSH: https://unix.stackexchange.com/questions/33271/how-to-avoid-ssh-asking-permission y https://man.openbsd.org/ssh -->
+    <exec seq="activate-onos-base-apps" type="verbatim" ostype="system">
+        sshpass -p karaf ssh -o StrictHostKeyChecking=no -p 8101 karaf@localhost app activate org.onosproject.drivers
+        sshpass -p karaf ssh -o StrictHostKeyChecking=no -p 8101 karaf@localhost app activate org.onosproject.openflow
+        sshpass -p karaf ssh -o StrictHostKeyChecking=no -p 8101 karaf@localhost app activate org.onosproject.gui2
+    </exec>
+
+    <!-- Instalar y activar la aplicación en ONOS -->
+    <exec seq="install-orchestrator" type="verbatim" ostype="system">
+        /opt/onos/bin/onos-app localhost install! /root/orquestador-1.0.0.oar
+    </exec>
+
+    <!-- Configurar la aplicación para usar redirección por TCP/IPv4 -->
+    <exec seq="configure-orchestrator" type="verbatim" ostype="system">
+        sshpass -p karaf ssh -o StrictHostKeyChecking=no -p 8101 karaf@localhost cfg set es.upm.etsit.muit.tfm.davidmartinezgarcia.orquestador.Orchestrator withRedirection 1
+    </exec>
+
+    <!-- Detener el controlador ONOS -->
+    <exec seq="stop-onos" type="verbatim" ostype="system">
+        systemctl stop onos.service
+        systemctl disable onos
+        systemctl daemon-reload
+        rm -Rf /root/.ssh/
+        rm /opt/onos/apache-karaf-4.2.9/data/db/partitions/data/partitions/1/*
+        rm /opt/onos/apache-karaf-4.2.9/data/db/partitions/system/partitions/1/*
+    </exec>
+  </vm>
+
+  <!-- Coordinador -->
+  <vm name="coordinador" type="lxc" arch="x86_64">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <mem>512M</mem>
+    <if id="1" net="central">
+      <mac>00:00:00:00:04:00</mac>
+      <ipv4>10.0.0.40/24</ipv4>
+    </if>
+    <if id="8" net="netmgt0">
+      <ipv4>172.16.0.40/24</ipv4>
+    </if>
+
+    <!-- Ruta por defecto para salir a Internet -->
+    <route type="ipv4" gw="10.0.0.1">default</route>
+
+    <!-- Configurar el servidor de DNS (resolver) -->
+    <exec seq="on_boot" type="verbatim" ostype="system">
+        echo "nameserver 10.0.0.60" > /etc/resolv.conf
+    </exec>
+
+    <!-- Copiar los ficheros en conf/coordinador al directorio /root/ en la máquina virtual -->
+    <filetree seq="start-coordinator" root="/root/">conf/coordinador/coordinator.py</filetree>
+    <filetree seq="start-coordinator" root="/root/">conf/coordinador/caches.json</filetree>
+    <filetree seq="start-coordinator" root="/root/">conf/coordinador/clients.json</filetree>
+    <filetree seq="start-coordinator" root="/root/">conf/coordinador/contents.txt</filetree>
+    <filetree seq="start-coordinator" root="/root/" perms="755">conf/coordinador/coordinator.sh</filetree>
+    <!-- Copiar el fichero para arrancar el coordinador como servicio -->
+    <filetree seq="start-coordinator" root="/etc/systemd/system/">conf/coordinador/coordinator.service</filetree>
+
+    <!-- Arrancar Coordinador (Flask en Python3). Se arranca como servicio -->
+    <exec seq="start-coordinator" type="verbatim" ostype="system">
+        cd /root/
+        export LC_ALL=C.UTF-8
+        export LANG=C.UTF-8
+        ldconfig
+        cd /etc/systemd/system/
+        systemctl daemon-reload
+        systemctl enable coordinator.service
+        systemctl start coordinator.service
+    </exec>
+
+    <!-- Detener Coordinador -->
+    <exec seq="stop-coordinator" type="verbatim" ostype="system">
+        systemctl stop coordinator.service
+    </exec>
+  </vm>
+
+  <!-- Servidor de DNS autoritativo y resolver -->
+  <vm name="dns" type="lxc" arch="x86_64">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <mem>512M</mem>
+    <if id="1" net="central">
+      <mac>00:00:00:00:06:00</mac>
+      <ipv4>10.0.0.60/24</ipv4>
+    </if>
+    <if id="8" net="netmgt0">
+      <ipv4>172.16.0.60/24</ipv4>
+    </if>
+
+    <!-- Ruta por defecto para salir a Internet -->
+    <route type="ipv4" gw="10.0.0.1">default</route>
+
+    <!-- Copiar el fichero de configuración del servidor de DNS (Unbound) -->
+    <!-- El arranque del servidor de DNS Unbound se hace en el arranque del contenedor, momento en el cual también se copia el fichero de configuración -->
+    <filetree seq="on_boot" root="/etc/unbound/unbound.conf.d/" perms="755">conf/dns/dns.conf</filetree>
+
+    <!-- Rearrancar Unbound (por algún motivo algunas veces no arranca correctamente) -->
+    <exec seq="on_boot" type="verbatim" ostype="system">
+        service unbound restart
+    </exec>
+  </vm>
+
+  <!-- Cliente 1 -->
+  <vm name="cliente1" type="lxc" arch="x86_64">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <mem>2G</mem>
+    <if id="1" net="mec1">
+      <mac>00:00:00:00:01:01</mac>
+      <ipv4>10.0.0.11/24</ipv4>
+    </if>
+    <if id="8" net="netmgt0">
+      <ipv4>172.16.0.11/24</ipv4>
+    </if>
+
+    <!-- Ruta por defecto para salir a Internet -->
+    <route type="ipv4" gw="10.0.0.1">default</route>
+
+    <!-- Configurar el servidor de DNS (resolver) y otras configuraciones -->
+    <exec seq="on_boot" type="verbatim" ostype="system">
+        echo "nameserver 10.0.0.60" > /etc/resolv.conf
+    </exec>
+  </vm>
+
+  <!-- Cliente 2 -->
+  <vm name="cliente2" type="lxc" arch="x86_64">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <mem>2G</mem>
+    <if id="1" net="mec2">
+      <mac>00:00:00:00:01:02</mac>
+      <ipv4>10.0.0.12/24</ipv4>
+    </if>
+    <if id="8" net="netmgt0">
+      <ipv4>172.16.0.12/24</ipv4>
+    </if>
+
+    <!-- Ruta por defecto para salir a Internet -->
+    <route type="ipv4" gw="10.0.0.1">default</route>
+
+    <!-- Configurar el servidor de DNS (resolver) y otras configuraciones -->
+    <exec seq="on_boot" type="verbatim" ostype="system">
+        echo "nameserver 10.0.0.60" > /etc/resolv.conf
+    </exec>
+  </vm>
+  
+  <!-- vProxy1 -->
+  <vm name="vProxy1" type="lxc" arch="x86_64">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64_ats</filesystem>
+    <mem>1G</mem>
+    <if id="1" net="mec1">
+      <mac>00:00:00:00:02:01</mac>
+      <ipv4>10.0.0.21/24</ipv4>
+    </if>
+    <if id="8" net="netmgt0">
+      <ipv4>172.16.0.21/24</ipv4>
+    </if>
+
+    <!-- Ruta por defecto para salir a Internet -->
+    <route type="ipv4" gw="10.0.0.1">default</route>
+
+    <!-- Copiar los ficheros en conf/vProxy al directorio /opt/ts/etc/trafficserver/ en la máquina virtual -->
+    <filetree seq="start-vProxy1" root="/opt/ts/etc/trafficserver/">conf/vProxy/records.config</filetree>
+    <filetree seq="start-vProxy1" root="/opt/ts/etc/trafficserver/">conf/vProxy/remap.config</filetree>
+    <filetree seq="start-vProxy1" root="/opt/ts/lua/">conf/vProxy/ats_vproxy_v3.lua</filetree>
+
+    <!-- Configurar el servidor de DNS (resolver) -->
+    <exec seq="on_boot" type="verbatim" ostype="system">
+        echo "nameserver 10.0.0.60" > /etc/resolv.conf
+    </exec>
+
+    <!-- Iniciar vProxy1 (Apache Traffic Server) -->
+    <exec seq="start-vProxy1" type="verbatim" ostype="system">
+        export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+        ldconfig
+        chown nobody:nogroup /opt/ts/lua/
+        chown nobody:nogroup /opt/ts/lua/ats_vproxy_v3.lua
+        chmod 777 /opt/ts/lua/ats_vproxy_v3.lua
+        /opt/ts/bin/trafficserver start
+    </exec>
+
+    <!-- Detener vProxy1 (Apache Traffic Server) -->
+    <exec seq="stop-vProxy1" type="verbatim" ostype="system">
+        /opt/ts/bin/trafficserver stop
+    </exec>
+  </vm>
+
+  <!-- vProxy2 -->
+  <vm name="vProxy2" type="lxc" arch="x86_64">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64_ats</filesystem>
+    <mem>1G</mem>
+    <if id="1" net="mec2">
+      <mac>00:00:00:00:02:02</mac>
+      <ipv4>10.0.0.22/24</ipv4>
+    </if>
+    <if id="8" net="netmgt0">
+      <ipv4>172.16.0.22/24</ipv4>
+    </if>
+
+    <!-- Ruta por defecto para salir a Internet -->
+    <route type="ipv4" gw="10.0.0.1">default</route>
+
+    <!-- Copiar los ficheros en conf/vProxy al directorio /opt/ts/etc/trafficserver/ en la máquina virtual -->
+    <filetree seq="start-vProxy2" root="/opt/ts/etc/trafficserver/">conf/vProxy/records.config</filetree>
+    <filetree seq="start-vProxy2" root="/opt/ts/etc/trafficserver/">conf/vProxy/remap.config</filetree>
+    <filetree seq="start-vProxy2" root="/opt/ts/lua/">conf/vProxy/ats_vproxy_v3.lua</filetree>
+
+    <!-- Configurar el servidor de DNS (resolver) -->
+    <exec seq="on_boot" type="verbatim" ostype="system">
+        echo "nameserver 10.0.0.60" > /etc/resolv.conf
+    </exec>
+
+    <!-- Iniciar vProxy2 (Apache Traffic Server) -->
+    <exec seq="start-vProxy2" type="verbatim" ostype="system">
+        export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+        ldconfig
+        chown nobody:nogroup /opt/ts/lua/
+        chown nobody:nogroup /opt/ts/lua/ats_vproxy_v3.lua
+        chmod 777 /opt/ts/lua/ats_vproxy_v3.lua
+        /opt/ts/bin/trafficserver start
+    </exec>
+
+    <!-- Detener vProxy2 (Apache Traffic Server) -->
+    <exec seq="stop-vProxy2" type="verbatim" ostype="system">
+        /opt/ts/bin/trafficserver stop
+    </exec>
+  </vm>
+  
+  <!-- vCache1 -->
+  <vm name="vCache1" type="lxc" arch="x86_64">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <mem>512M</mem>
+    <if id="1" net="mec1">
+      <mac>00:00:00:00:03:01</mac>
+      <ipv4>10.0.0.31/24</ipv4>
+    </if>
+    <if id="8" net="netmgt0">
+      <ipv4>172.16.0.31/24</ipv4>
+    </if>
+
+    <!-- Ruta por defecto para salir a Internet -->
+    <route type="ipv4" gw="10.0.0.1">default</route>
+
+    <!-- Copiar los ficheros en conf/vCache al directorio /root en el arranque de la máquina virtual -->
+    <filetree seq="on_boot" root="/root/">conf/vCache/</filetree>
+
+    <!-- Configurar el servidor de DNS (resolver) -->
+    <exec seq="on_boot" type="verbatim" ostype="system">
+        echo "nameserver 10.0.0.60" > /etc/resolv.conf
+    </exec>
+
+    <!-- Iniciar vCache1 (Apache HTTP Server) -->
+    <exec seq="start-vCache1" type="verbatim" ostype="system">
+	mv /root/dash/ /var/www/html/
+	mv /root/index.html /var/www/html/
+	sed -i 's/vCache/vCache1/' /var/www/html/index.html
+	sed -i 's/Reference Client/vCache1 Reference Client/g' /var/www/html/dash/dash.js-4.3.0/samples/dash-if-reference-player/index.html
+        chmod -R 777 /var/www/html/
+        service apache2 start
+    </exec>
+
+    <!-- Detener vCache1 (Apache HTTP Server) -->
+    <exec seq="stop-vCache1" type="verbatim" ostype="system">
+        service apache2 stop
+    </exec>
+  </vm>
+
+  <!-- vCache2 -->
+  <vm name="vCache2" type="lxc" arch="x86_64">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <mem>512M</mem>
+    <if id="1" net="mec2">
+      <mac>00:00:00:00:03:02</mac>
+      <ipv4>10.0.0.32/24</ipv4>
+    </if>
+    <if id="8" net="netmgt0">
+      <ipv4>172.16.0.32/24</ipv4>
+    </if>
+
+    <!-- Ruta por defecto para salir a Internet -->
+    <route type="ipv4" gw="10.0.0.1">default</route>
+
+    <!-- Copiar los ficheros en conf/vCache al directorio /root en el arranque de la máquina virtual -->
+    <filetree seq="on_boot" root="/root/">conf/vCache/</filetree>
+
+    <!-- Configurar el servidor de DNS (resolver) -->
+    <exec seq="on_boot" type="verbatim" ostype="system">
+        echo "nameserver 10.0.0.60" > /etc/resolv.conf
+    </exec>
+
+    <!-- Iniciar vCache2 (Apache HTTP Server) -->
+    <exec seq="start-vCache2" type="verbatim" ostype="system">
+	mv /root/dash/ /var/www/html/
+	mv /root/index.html /var/www/html/
+	sed -i 's/vCache/vCache2/' /var/www/html/index.html
+	sed -i 's/Reference Client/vCache2 Reference Client/g' /var/www/html/dash/dash.js-4.3.0/samples/dash-if-reference-player/index.html
+        chmod -R 777 /var/www/html/
+        service apache2 start
+    </exec>
+
+    <!-- Detener vCache2 (Apache HTTP Server) -->
+    <exec seq="stop-vCache2" type="verbatim" ostype="system">
+        service apache2 stop
+    </exec>
+  </vm>
+
+  <!-- vCache3 -->
+  <vm name="vCache3" type="lxc" arch="x86_64">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <mem>512M</mem>
+    <if id="1" net="central">
+      <mac>00:00:00:00:03:03</mac>
+      <ipv4>10.0.0.33/24</ipv4>
+    </if>
+    <if id="8" net="netmgt0">
+      <ipv4>172.16.0.33/24</ipv4>
+    </if>
+
+    <!-- Ruta por defecto para salir a Internet -->
+    <route type="ipv4" gw="10.0.0.1">default</route>
+
+    <!-- Copiar los ficheros en conf/vCache al directorio /root en el arranque de la máquina virtual -->
+    <filetree seq="on_boot" root="/root/">conf/vCache/</filetree>
+
+    <!-- Configurar el servidor de DNS (resolver) -->
+    <exec seq="on_boot" type="verbatim" ostype="system">
+        echo "nameserver 10.0.0.60" > /etc/resolv.conf
+    </exec>
+
+    <!-- Iniciar vCache3 (Apache HTTP Server) -->
+    <exec seq="start-vCache3" type="verbatim" ostype="system">
+	mv /root/dash/ /var/www/html/
+	mv /root/index.html /var/www/html/
+	sed -i 's/vCache/vCache3/' /var/www/html/index.html
+	sed -i 's/Reference Client/vCache3 Reference Client/g' /var/www/html/dash/dash.js-4.3.0/samples/dash-if-reference-player/index.html
+        chmod -R 777 /var/www/html/
+        service apache2 start
+    </exec>
+
+    <!-- Detener vCache3 (Apache HTTP Server) -->
+    <exec seq="stop-vCache3" type="verbatim" ostype="system">
+        service apache2 stop
+    </exec>
+  </vm>
+
+  <!-- Host local, para gestión de la red durante la ejecución del escenario -->
+  <host>
+    <hostif net="netmgt0">
+      <ipv4>172.16.0.200/24</ipv4>
+    </hostif>
+    <hostif net="netmgt1">
+      <ipv4>172.16.1.200/24</ipv4>
+    </hostif>
+    <hostif net="netmgt2">
+      <ipv4>172.16.2.200/24</ipv4>
+    </hostif>
+    <hostif net="netmgt3">
+      <ipv4>172.16.3.200/24</ipv4>
+    </hostif>
+    <hostif net="netmgt4">
+      <ipv4>172.16.4.200/24</ipv4>
+    </hostif>
+  </host>
+</vnx>
