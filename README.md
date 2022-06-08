@@ -10,6 +10,6 @@
 
 **Autor**: David Martínez García
 
-**Tutores**: Carlos Mariano Lentisco Sánchez y Luis Bellido Triana
+**Tutor**: Carlos Mariano Lentisco Sánchez
 
 **Departamento**: Departamento de Ingeniería de Sistemas Telemáticos (DIT)
