@@ -95,7 +95,7 @@ y se editan tal que queden de la siguiente manera:
 MYLDFLAGS?=-lluajit-5.1 -ldl -lm
 ```
 
-Guardamos y cerramos la edición. Se vuelve al directorio de LuaSocket y se realiza la compilación e instalación. LuaSocket se instalará, también, bajo el directorio del sistema `/usr/local`:
+Guardamos y cerramos la edición. Se vuelve al directorio de LuaSocket y se realiza la compilación e instalación. LuaSocket se instalará también bajo el directorio del sistema `/usr/local`:
 
 ```
 $ cd ../
