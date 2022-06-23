@@ -141,7 +141,7 @@ David Martínez García
     <!-- Ruta por defecto para salir a Internet -->
     <route type="ipv4" gw="10.0.0.1">default</route>
 
-    <!-- Copiar los binarios de ONOS y la aplicación precompilada con el Orquestador ICN -->
+    <!-- Copiar los binarios de ONOS y la aplicación precompilada con la aplicación orquestadora de la red -->
     <filetree seq="on_boot" root="/root/">conf/onos/orquestador-1.0.0.oar</filetree>
     <filetree seq="on_boot" root="/opt/">conf/onos/onos-2.7.0.tar.gz</filetree>
     <filetree seq="on_boot" root="/opt/">conf/onos/options</filetree>
