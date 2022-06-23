@@ -17,7 +17,7 @@ $ sudo /opt/onos/bin/onos-service start
 
 Para finalizar la ejecución de ONOS, en la ventana de terminal desde donde se lanzó, pulsar `Ctrl + C`.
 
-### 1.2. Ejecución de ONOS como servicio o *daemon*
+### 1.2. Ejecución de ONOS como servicio o *daemon* del sistema
 
 #### Preparación
 
