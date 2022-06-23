@@ -1,4 +1,4 @@
-# Configuración de Apache Traffic Server como vProxy
+# Configuración de Apache Traffic Server
 
 En este documento se describen los detalles principales sobre la configuración de Apache Traffic Server. La configuración se realiza mediante ficheros específicos, los cuales se ubican en el directorio `/opt/ts/etc/trafficserver`. Se tienen ficheros para las principales características, aunque los más importantes son los ficheros `records.config`, para la configuración general, y `remap.config`, para las reglas de mapeo de URLs.
 
@@ -46,7 +46,7 @@ CONFIG proxy.config.url_remap.pristine_host_hdr INT 1
 CONFIG proxy.config.url_remap.remap_required INT 1
 ```
 
-La configuración del puerto en el que escuchará ATS las peticiones de los clientes se realiza en la directiva `proxy.config.http.server_ports`. Por defecto se utiliza el puerto 8080 para IPv4 e IPv6. Si se quiere editar, modificar dicha directiva.
+La configuración del puerto en el que escuchará ATS las peticiones de los clientes se realiza en la directiva `proxy.config.http.server_ports`. Por defecto se utiliza el puerto 8080 para IPv4 e IPv6.
 
 En este modo de funcionamiento, ATS recibe peticiones de los clientes y las redirige a servidores origen, los cuales responden a ATS y éste, a su vez, a los clientes. Desde el punto de vista de los clientes el funcionamiento es transparente, ya que no conocen la infraestructura que hay detrás. Los clientes se comunican con el proxy ATS y, desde su perspectiva, actúa como servidor de contenidos.
 
