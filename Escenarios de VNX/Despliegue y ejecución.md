@@ -80,3 +80,5 @@ Una vez establecidas las sesiones SSH, ejecutar el siguiente comando, que abrir√
 ```
 
 Con el navegador Web abierto, introducir en la barra de direcciones la URL `http://contenidos.pruebasgiros.home.arpa:8080/` y comprobar el funcionamiento.
+Para analizar el tr√°fico de red, instalar la herramienta _Wireshark_, ejecutarla y capturar en las interfaces cuyos nombres terminan en la cadena de caracteres `-e1`.
+
