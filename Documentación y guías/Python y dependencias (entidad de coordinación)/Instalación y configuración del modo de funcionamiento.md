@@ -1,6 +1,8 @@
 # 1. Instalación de Python con sus dependencias para implementar la entidad de coordinación de la red
 
-**NOTA:** Ejecutar todos los comandos siguientes como `root`.
+**La instalación se realiza en el _rootfs_ de VNX correspondiente (Ubuntu 18.04 LTS de 64 bits)**.
+
+**NOTA:** Todos los comandos siguientes se ejecutan como usuario `root`.
 
 ## 1.1. Preparación del entorno
 
@@ -57,7 +59,7 @@ La entidad de coordinación puede funcionar, para el mecanismo de selección de 
 La configuración del modo de funcionamiento debe realizarse, por lo general, antes de ejecutar la entidad de coordinación. Esta configuración se realiza mediante una variable de entorno, llamada `COORDINATOR_MODE`, cuyo valor puede ser cualquiera de los indicados en el apartado anterior. Para configurar esta variable de entorno, en una terminal de comandos, ejecutar:
 
 ```
-$ export COORDINATOR_MODE=<valor>
+# export COORDINATOR_MODE=<valor>
 ```
 
 Si la entidad de coordinación ya estaba ejecutándose antes del cambio, es necesario reiniciarla.
