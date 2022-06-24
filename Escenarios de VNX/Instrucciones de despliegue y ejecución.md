@@ -1,4 +1,4 @@
-# Despliegue y ejecución de los escenarios de VNX
+# Instrucciones de despliegue y ejecución de los escenarios de VNX
 
 En este documento se presentan las instrucciones para descargar y lanzar los escenarios completos de VNX desarrollados.
 
