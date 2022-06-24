@@ -5,6 +5,8 @@ La ejecución puede realizarse de dos maneras diferentes:
 - Utilizando el lanzador del servicio, que se invoca de manera manual.
 - Ejecutando ONOS como servicio, habiendo configurado el sistema anteriormente.
 
+**NOTA:** Todos los comandos siguientes se ejecutan como usuario `root`.
+
 ## 1. Ejecución de ONOS
 
 ### 1.1. Ejecución de manera manual
@@ -12,7 +14,7 @@ ONOS no recomienda la ejecución como usuario con permisos elevados (`sudo` o `r
 Para lanzar ONOS de manera manual, ejecutar en un terminal:
 
 ```
-$ sudo /opt/onos/bin/onos-service start
+# /opt/onos/bin/onos-service start
 ```
 
 Para finalizar la ejecución de ONOS, en la ventana de terminal desde donde se lanzó, pulsar `Ctrl + C`.
@@ -24,17 +26,17 @@ Para finalizar la ejecución de ONOS, en la ventana de terminal desde donde se l
 En primer lugar, instalar los ficheros de servicio y habilitarlo. Ejecutar los siguientes comandos:
 
 ```
-$ sudo cp /opt/onos/init/onos.initd /etc/init.d/onos
-$ sudo cp /opt/onos/init/onos.conf /etc/init/onos.conf
-$ sudo cp /opt/onos/init/onos.service /etc/systemd/system/
-$ sudo systemctl daemon-reload
-$ sudo systemctl enable onos
+# cp /opt/onos/init/onos.initd /etc/init.d/onos
+# cp /opt/onos/init/onos.conf /etc/init/onos.conf
+# cp /opt/onos/init/onos.service /etc/systemd/system/
+# systemctl daemon-reload
+# systemctl enable onos
 ```
 
 En segundo lugar, crear el fichero de opciones de ONOS `/opt/onos/options`, que utilizará el servicio de ONOS para configurarse. Para ello, ejecutar el siguiente comando:
 
 ```
-$ sudo nano /opt/onos/options
+# nano /opt/onos/options
 ```
 
 Y escribir en él el siguiente contenido:
@@ -50,7 +52,7 @@ Guardar y salir del editor. En `ONOS_APPS=` es posible especificar una lista de 
 Ejecutar el siguiente comando para dar permisos al fichero que se acaba de crear:
 
 ```
-$ sudo chmod 777 /opt/onos/options
+# chmod 777 /opt/onos/options
 ```
 
 #### Ejecución, parada, reinicio y comprobación del estado
@@ -58,41 +60,41 @@ $ sudo chmod 777 /opt/onos/options
 Para **ejecutar** ONOS como servicio se pueden lanzar los siguientes comandos:
 
 ```
-$ sudo service onos start
+# service onos start
 
 (o alternativamente)
 
-$ sudo systemctl start onos.service
+# systemctl start onos.service
 ```
 
 Para **detener** el servicio de ONOS se pueden ejecutar los siguientes comandos:
 
 ```
-$ sudo service onos stop
+# service onos stop
 
 (o alternativamente)
 
-$ sudo systemctl stop onos.service
+# systemctl stop onos.service
 ```
 
 Para **reiniciar** el servicio de ONOS se pueden ejecutar los siguientes comandos:
 
 ```
-$ sudo service onos restart
+# service onos restart
 
 (o alternativamente)
 
-$ sudo systemctl restart onos.service
+# systemctl restart onos.service
 ```
 
 Para **comprobar el estado** del servicio de ONOS se pueden ejecutar los siguientes comandos:
 
 ```
-$ sudo service onos status
+# service onos status
 
 (o alternativamente)
 
-$ sudo systemctl status onos.service
+# systemctl status onos.service
 ```
 
 ## 2. Acceso a las interfaces de usuario de ONOS
@@ -104,14 +106,14 @@ ONOS proporciona dos interfaces de usuario:
 Para acceder a la CLI, abrir una ventana de terminal y ejecutar:
 
 ```
-$ ssh -p 8101 onos@localhost
+# ssh -p 8101 onos@localhost
 ```
 **La contraseña es `rocks`**.
 
 Alternativamente:
 
 ```
-$ ssh -p 8101 karaf@localhost
+# ssh -p 8101 karaf@localhost
 ```
 **La contraseña es `karaf`**.
 
@@ -136,14 +138,14 @@ La activación de estas aplicaciones puede activar otras como dependencias o sub
 Para activar estas aplicaciones, acceder a la CLI con:
 
 ```
-$ ssh -p 8101 onos@localhost
+# ssh -p 8101 onos@localhost
 ```
 **La contraseña es `rocks`**.
 
 O con:
 
 ```
-$ ssh -p 8101 karaf@localhost
+# ssh -p 8101 karaf@localhost
 ```
 **La contraseña es `karaf`**.
 
