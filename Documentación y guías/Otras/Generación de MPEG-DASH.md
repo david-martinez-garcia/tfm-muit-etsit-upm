@@ -22,6 +22,7 @@ Primero, se descarga el vídeo _Big Buck Bunny_ original:
 
 ```
 $ wget https://download.blender.org/demo/movies/BBB/bbb_sunflower_2160p_60fps_normal.mp4
+$ mv bbb_sunflower_2160p_60fps_normal.mp4 bbb_original.mp4
 ```
 
 Después, descargar e instalar las dependencias necesarias mediante línea de comandos:
@@ -70,3 +71,26 @@ $ ffmpeg -i bbb_original.mp4 -c:v libx264 -b:v 8002000 -r 60 -level 3.0 -profile
 ```
 
 Como resultado, se obtienen 5 ficheros, uno por representación: `bbb_1.mp4`, `bbb_2.mp4`, `bbb_3.mp4`, `bbb_4.mp4` y `bbb_5.mp4`.
+
+## 2. Segmentación de las representaciones
+
+Con las diferentes representaciones generadas, se segmentan mediante la ejecución de los siguientes comandos:
+
+```
+$ cd bento4/bin
+./mp4fragment ../../bbb_1.mp4 ../../bbb_1_fragmented.mp4
+./mp4fragment ../../bbb_2.mp4 ../../bbb_2_fragmented.mp4
+./mp4fragment ../../bbb_3.mp4 ../../bbb_3_fragmented.mp4
+./mp4fragment ../../bbb_4.mp4 ../../bbb_4_fragmented.mp4
+./mp4fragment ../../bbb_5.mp4 ../../bbb_5_fragmented.mp4
+```
+
+## 3. Generación del _streaming_ MPEG-DASH
+
+Ejecutar el siguiente comando, que generará el _streaming_ MPEG-DASH a partir de las representaciones segmentadas:
+
+```
+$ ./mp4dash ../../bbb_1_fragmented.mp4 ../../bbb_2_fragmented.mp4 ../../bbb_3_fragmented.mp4 ../../bbb_4_fragmented.mp4 ../../bbb_5_fragmented.mp4
+```
+
+El resultado se almacenará en el directorio `output`.
