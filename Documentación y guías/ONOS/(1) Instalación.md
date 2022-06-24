@@ -106,7 +106,7 @@ Con esto queda ONOS en versión de producción instalado.
 
 # 2. Instalación de ONOS en versión de desarrollo
 
-En este Apartado se describen las instrucciones para instalar el controlador ONOS en su versión de desarrollo, de manera que proporcione las herramientas necesarias para programar aplicaciones. Para este propósito se usará, fundamentalmente, la herramienta `onos-create-app`.
+En este Apartado se describen las instrucciones para instalar el controlador ONOS en su versión de desarrollo, de manera que proporcione las herramientas necesarias para programar aplicaciones. Para este propósito se usará la herramienta `onos-create-app`.
 
 **La instalación se realiza en el sistema anfitrión (Ubuntu 18.04 LTS de 64 bits)**.
 
