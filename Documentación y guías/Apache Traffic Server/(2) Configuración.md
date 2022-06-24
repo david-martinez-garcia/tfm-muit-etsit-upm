@@ -9,8 +9,8 @@ La documentación de Apache Traffic Server sirve como punto de partida fundament
 La instalación de Apache Traffic Server genera, por defecto, un script de ejecución que es necesario modificar para poder observar todos los logs de la aplicación. Para modificar este script, dirigirse al directorio de binarios de ATS y editar el fichero `trafficserver`:
 
 ```
-$ cd /opt/ts/bin/
-$ sudo nano trafficserver
+# cd /opt/ts/bin/
+# nano trafficserver
 ```
 
 Buscar las líneas siguientes:
