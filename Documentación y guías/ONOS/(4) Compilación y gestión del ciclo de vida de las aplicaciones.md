@@ -27,7 +27,7 @@ Para que una aplicación pueda activarse necesita estar instalada. La activació
 Para instalar una aplicación, ejecutar, desde el directorio raíz de la aplicación desarrollada, el siguiente comando:
 
 ```
-/opt/onos/bin/onos-app localhost install target/giros-onos-app-1.0-SNAPSHOT.oar
+# /opt/onos/bin/onos-app localhost install target/giros-onos-app-1.0-SNAPSHOT.oar
 ```
 
 - El parámetro `localhost` indica en qué controlador instalar la aplicación. En este caso, hace referencia al controlador ONOS ejecutándose en la máquina local.
