@@ -134,7 +134,7 @@ $ sudo apt update && sudo apt dist-upgrade && sudo apt autoremove && sudo apt au
 Después, instalar las dependencias iniciales:
 
 ```
-$ sudo apt install subversion git zip curl unzip nano python2.7 python3 openjdk-11-jdk
+$ sudo apt install subversion git zip wget curl unzip nano python2.7 python3 openjdk-11-jdk
 ```
 
 Tras la instalación de OpenJDK, se recomienda configurar las variables `JAVA_HOME` y `JRE_HOME`. Para ello, ejecutar:
