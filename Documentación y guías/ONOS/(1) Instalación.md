@@ -1,6 +1,6 @@
 # Instalación de ONOS en versión de producción y en versión de desarrollo
 
-# 1. Instalación de ONOS en versión de producción
+## 1. Instalación de ONOS en versión de producción
 
 En este Apartado se describe el procedimiento para instalar el controlador ONOS en su versión de producción.
 
@@ -8,7 +8,7 @@ En este Apartado se describe el procedimiento para instalar el controlador ONOS 
 
 **NOTA:** Todos los comandos siguientes se ejecutan como usuario `root`.
 
-## 1.1. Preparación del entorno
+### 1.1. Preparación del entorno
 
 Según la documentación oficial de ONOS, se tienen que cumplir los siguientes [requisitos mínimos](https://wiki.onosproject.org/display/ONOS/Requirements):
 
@@ -33,7 +33,7 @@ En primer lugar, se actualiza el sistema con los últimos paquetes disponibles. 
 
 **Se instalará la versión 2.7.0 _X-Wing_ (LTS)**.
 
-### Usuarios
+#### Usuarios
 
 Se recomienda la ejecución de ONOS bajo un usuario sin privilegios (no debería ejecutarse como `root`). Para ello, y especialmente si se va a ejecutar ONOS como servicio del sistema, hay que definir un usuario para la ejecución. El siguiente comando realiza esta acción, creando el usuario `sdn`:
 
@@ -41,7 +41,7 @@ Se recomienda la ejecución de ONOS bajo un usuario sin privilegios (no debería
 # adduser sdn --system --group
 ```
 
-### Dependencias
+#### Dependencias
 
 Se requieren las siguientes dependencias adicionales:
 
@@ -80,7 +80,7 @@ Finalmente, instalar `wget`, `curl` y `sshpass` y reiniciar la sesión del usuar
 # apt install wget curl sshpass
 ```
 
-## 1.2. Descarga e instalación de ONOS
+### 1.2. Descarga e instalación de ONOS
 
 Para realizar la instalación, se descargará un fichero `.tar.gz` con ONOS 2.7.0 precompilado. Las dependencias internas de ONOS y paquetes por defecto requieren que se instale en el directorio `/opt` del sistema. Para ello, se crea el directorio si no está ya creado, y se establece ese directorio como el de trabajo en la sesión de consola:
 
@@ -106,13 +106,13 @@ Descomprimir el fichero descargado:
 
 Con esto queda ONOS en versión de producción instalado.
 
-# 2. Instalación de ONOS en versión de desarrollo
+## 2. Instalación de ONOS en versión de desarrollo
 
 En este Apartado se describen las instrucciones para instalar el controlador ONOS en su versión de desarrollo, de manera que proporcione las herramientas necesarias para programar aplicaciones. Para este propósito se usará la herramienta `onos-create-app`.
 
 **La instalación se realiza en el sistema anfitrión (Ubuntu 18.04 LTS de 64 bits)**.
 
-## 2.1. Preparación del entorno. Dependencias y requisitos necesarios
+### 2.1. Preparación del entorno. Dependencias y requisitos necesarios
 
 Para instalar ONOS en versión de producción se necesitan las siguientes dependencias:
 - [Apache Maven](https://maven.apache.org/install.html). Requerida para compilar aplicaciones de ONOS.
@@ -126,7 +126,7 @@ Adicionalmente, se necesitan también `subversion`, `git`, `zip`, `wget`, `curl`
 
 Todas estas dependencias se utlizarán para compilar, hacer pruebas e instalar las aplicaciones de ONOS, así como para poder compilar la versión de desarrollo de ONOS en el sistema.
 
-## 2.2. Instalación de las dependencias necesarias
+### 2.2. Instalación de las dependencias necesarias
 En primer lugar, comprobar que el sistema se encuentra actualizado:
 
 ```
@@ -157,7 +157,7 @@ Modificar, también, la variable `PATH` y añadir al final de ésta lo siguiente
 
 Guardar, cerrar el fichero y reiniciar la sesión de usuario. Una vez completadas estas acciones, se pasa a instalar el resto de dependencias.
 
-### 2.2.1. Instalación de Apache Maven
+#### 2.2.1. Instalación de Apache Maven
 
 **A 26/05/2022 la versión de Maven es la 3.8.5, que es la que aparece reflejada en este documento**.
 
@@ -187,7 +187,7 @@ Finalmente, editar el fichero `/etc/environment` y añadir a la variable `PATH` 
 
 Con esto queda instalado Apache Maven.
 
-### 2.2.2. Instalación de Google Bazel
+#### 2.2.2. Instalación de Google Bazel
 
 **Bazel se utiliza, actualmente, para compilar ONOS desde su repositorio**.
 
@@ -211,7 +211,7 @@ $ sudo apt update && sudo apt install bazel
 
 Con esto queda instalado Bazel.
 
-## 2.3. Compilación e instalación de ONOS en versión de desarrollo
+### 2.3. Compilación e instalación de ONOS en versión de desarrollo
 
 En primer lugar, clonar el repositorio de GitHub oficial:
 
