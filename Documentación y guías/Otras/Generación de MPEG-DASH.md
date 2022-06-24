@@ -3,6 +3,8 @@
 En este documento se presentan las instrucciones seguidas para generar un _streaming_ MPEG-DASH de ejemplo. Las instrucciones se presentan para el sistema operativo
 Ubuntu Linux 18.04 LTS.
 
+**Las instrucciones se ejecutan en el sistema anfitrión (Ubuntu 18.04 LTS de 64 bits)**.
+
 ## Descarga e instalación de los ficheros y dependencias necesarias.
 
 **NOTA: Ejecutar todos los comandos en el mismo directorio.**
