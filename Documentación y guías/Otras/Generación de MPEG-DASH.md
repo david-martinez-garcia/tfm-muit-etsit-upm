@@ -76,11 +76,11 @@ Con las diferentes representaciones generadas, se segmentan mediante la ejecuci√
 
 ```
 $ cd bento4/bin
-./mp4fragment ../../bbb_1.mp4 ../../bbb_1_fragmented.mp4
-./mp4fragment ../../bbb_2.mp4 ../../bbb_2_fragmented.mp4
-./mp4fragment ../../bbb_3.mp4 ../../bbb_3_fragmented.mp4
-./mp4fragment ../../bbb_4.mp4 ../../bbb_4_fragmented.mp4
-./mp4fragment ../../bbb_5.mp4 ../../bbb_5_fragmented.mp4
+$ ./mp4fragment ../../bbb_1.mp4 ../../bbb_1_fragmented.mp4
+$ ./mp4fragment ../../bbb_2.mp4 ../../bbb_2_fragmented.mp4
+$ ./mp4fragment ../../bbb_3.mp4 ../../bbb_3_fragmented.mp4
+$ ./mp4fragment ../../bbb_4.mp4 ../../bbb_4_fragmented.mp4
+$ ./mp4fragment ../../bbb_5.mp4 ../../bbb_5_fragmented.mp4
 ```
 
 ## 3. Generaci√≥n del _streaming_ MPEG-DASH
