@@ -1,5 +1,5 @@
 # Compilación y gestión del ciclo de vida de las aplicaciones
-En este documento se describen las instrucciones para compilar y gestionar el ciclo de vida de las aplicaciones desarrolladas de ONOS (instalación, activación, desactivación y desinstalación).
+En este documento se describen las instrucciones para compilar y gestionar el ciclo de vida de las aplicaciones de ONOS desarrolladas (instalación, activación, desactivación y desinstalación).
 
 ## 1. Compilación de la aplicación
 Una vez completada la edición del código fuente de la aplicación, en el directorio raíz de la misma (debería ser `/home/usuario/onos-apps/<nombre_de_app>`) invocar el siguiente comando de Apache Maven, que realiza la compilación de la aplicación:
