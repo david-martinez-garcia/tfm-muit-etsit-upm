@@ -3,9 +3,11 @@
 En este documento se presentan las instrucciones seguidas para generar un _streaming_ MPEG-DASH de ejemplo. Las instrucciones se presentan para el sistema operativo
 Ubuntu Linux 18.04 LTS.
 
-Se ha partido del vídeo _Big Buck Bunny_, en resolución 3840x2160 (16:9) a 60 fps, que puede obtenerse desde el siguiente enlace: https://download.blender.org/demo/movies/BBB/bbb_sunflower_2160p_60fps_normal.mp4
+## Descarga e instalación de los ficheros y dependencias necesarias.
 
-Una vez descargado, se ha renombrado el fichero a `bbb_original.mp4`.
+**NOTA: Ejecutar todos los comandos en el mismo directorio.**
+
+Se ha partido del vídeo _Big Buck Bunny_, en resolución 3840x2160 (16:9) a 60 fps, que puede obtenerse desde el siguiente enlace: https://download.blender.org/demo/movies/BBB/bbb_sunflower_2160p_60fps_normal.mp4
 
 Para generar el _streaming_ es necesario disponer de las siguientes dependencias, instalables mediante línea de comandos: `unzip`, `ffmpeg`, `ubuntu-restricted-extras` y `python3.8`.
 
@@ -14,11 +16,7 @@ También es necesario descargar e instalar (o desempaquetar):
 - GPAC, que puede obtenerse desde el siguiente enlace: https://download.tsi.telecom-paristech.fr/gpac/release/2.0/gpac_2.0-rev0-g418db414-master_amd64.deb
 - _Bento4_, que puede descargarse desde el siguiente enlace: https://www.bok.net/Bento4/binaries/Bento4-SDK-1-6-0-639.x86_64-unknown-linux.zip
 
-## Descarga e instalación de los ficheros y dependencias necesarias.
-
-**NOTA: Ejecutar todos los comandos en el mismo directorio.**
-
-Primero, se descarga el vídeo _Big Buck Bunny_ original:
+Primero, se descarga el vídeo _Big Buck Bunny_ original y se renombra:
 
 ```
 $ wget https://download.blender.org/demo/movies/BBB/bbb_sunflower_2160p_60fps_normal.mp4
