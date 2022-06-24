@@ -5,7 +5,7 @@ Ubuntu Linux 18.04 LTS.
 
 **Las instrucciones se ejecutan en el sistema anfitrión (Ubuntu 18.04 LTS de 64 bits)**.
 
-## Descarga e instalación de los ficheros y dependencias necesarias.
+## 1. Descarga e instalación de los ficheros y dependencias necesarias.
 
 **NOTA: Ejecutar todos los comandos en el mismo directorio.**
 
@@ -50,7 +50,7 @@ $ mv Bento4-SDK-1-6-0-639.x86_64-unknown-linux bento4
 
 Con esto, quedan instaladas todas las dependencias necesarias.
 
-## 1. Generación de las representaciones
+## 2. Generación de las representaciones
 
 Se generan 5 representaciones con fragmentos de 2 segundos de duración:
 
@@ -72,7 +72,7 @@ $ ffmpeg -i bbb_original.mp4 -c:v libx264 -b:v 8002000 -r 60 -level 3.0 -profile
 
 Como resultado, se obtienen 5 ficheros, uno por representación: `bbb_1.mp4`, `bbb_2.mp4`, `bbb_3.mp4`, `bbb_4.mp4` y `bbb_5.mp4`.
 
-## 2. Segmentación de las representaciones
+## 3. Segmentación de las representaciones
 
 Con las diferentes representaciones generadas, se segmentan mediante la ejecución de los siguientes comandos:
 
@@ -85,7 +85,7 @@ $ ./mp4fragment ../../bbb_4.mp4 ../../bbb_4_fragmented.mp4
 $ ./mp4fragment ../../bbb_5.mp4 ../../bbb_5_fragmented.mp4
 ```
 
-## 3. Generación del _streaming_ MPEG-DASH
+## 4. Generación del _streaming_ MPEG-DASH
 
 Finalmente, ejecutar el siguiente comando, que generará el _streaming_ MPEG-DASH a partir de las representaciones segmentadas:
 
