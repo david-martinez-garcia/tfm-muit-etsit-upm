@@ -2,9 +2,11 @@
 
 En este Apartado se describe el procedimiento para instalar el controlador ONOS en su versión de producción.
 
-## 1.1. Preparación del entorno
+**La instalación se realiza en el _rootfs_ de VNX correspondiente (Ubuntu 18.04 LTS de 64 bits)**.
 
-Para la instalación de ONOS se partirá de una máquina Ubuntu en versión 18.04 LTS y arquitectura x86 de 64 bits. Puede utilizarse una versión más reciente, pero por cuestiones de dependencias y estabilidad se ha elegido la versión 18.04 LTS.
+**NOTA:** Todos los comandos siguientes se ejecutan como usuario `root`.
+
+## 1.1. Preparación del entorno
 
 Según la documentación oficial de ONOS, se tienen que cumplir los siguientes [requisitos mínimos](https://wiki.onosproject.org/display/ONOS/Requirements):
 
@@ -24,7 +26,7 @@ Además, la máquina en la que se ejecute ONOS tiene que tener los siguientes pu
 En primer lugar, se actualiza el sistema con los últimos paquetes disponibles. Para ello, ejecutar:
 
 ```
-$ sudo apt update && sudo apt dist-upgrade && sudo apt autoremove && sudo apt autoclean
+# apt update && apt dist-upgrade && apt autoremove && apt autoclean
 ```
 
 **Se instalará la versión 2.7.0 _X-Wing_ (LTS)**.
@@ -34,7 +36,7 @@ $ sudo apt update && sudo apt dist-upgrade && sudo apt autoremove && sudo apt au
 Se recomienda la ejecución de ONOS bajo un usuario sin privilegios (no debería ejecutarse como `root`). Para ello, y especialmente si se va a ejecutar ONOS como servicio del sistema, hay que definir un usuario para la ejecución. El siguiente comando realiza esta acción, creando el usuario `sdn`:
 
 ```
-$ sudo adduser sdn --system --group
+# adduser sdn --system --group
 ```
 
 ### Dependencias
@@ -49,14 +51,12 @@ Se requieren las siguientes dependencias adicionales:
 Primero, se instala OpenJDK 11 y otras dependencias adicionales:
 
 ```
-$ sudo apt install openjdk-11-jdk subversion git nano
+# apt install openjdk-11-jdk subversion git nano
 ```
 
 Una vez instalado, se recomienda configurar las variables `JAVA_HOME` y `JRE_HOME`:
 
 ```
-$ sudo su
-
 # nano /etc/environment
 ```
 
@@ -75,12 +75,12 @@ Modificar, también, la variable `PATH` y añadir al final de ésta lo siguiente
 Finalmente, instalar `wget`, `curl` y `sshpass` y reiniciar la sesión del usuario:
 
 ```
-$ sudo apt install wget curl sshpass
+# apt install wget curl sshpass
 ```
 
 ## 1.2. Descarga e instalación de ONOS
 
-Para realizar la instalación, se descargará un fichero `.tar.gz` con ONOS 2.7.0 precompilado. Las dependencias internas de ONOS y paquetes por defecto requieren que se instale en el directorio `/opt` del sistema. Para ello, se crea el directorio si no está ya creado, y se establece ese directorio como el de trabajo en la sesión de consola. Realizar los siguientes comandos como `root`:
+Para realizar la instalación, se descargará un fichero `.tar.gz` con ONOS 2.7.0 precompilado. Las dependencias internas de ONOS y paquetes por defecto requieren que se instale en el directorio `/opt` del sistema. Para ello, se crea el directorio si no está ya creado, y se establece ese directorio como el de trabajo en la sesión de consola:
 
 ```
 # mkdir /opt
@@ -107,6 +107,8 @@ Con esto queda ONOS en versión de producción instalado.
 # 2. Instalación de ONOS en versión de desarrollo
 
 En este Apartado se describen las instrucciones para instalar el controlador ONOS en su versión de desarrollo, de manera que proporcione las herramientas necesarias para programar aplicaciones. Para este propósito se usará, fundamentalmente, la herramienta `onos-create-app`.
+
+**La instalación se realiza en el sistema anfitrión (Ubuntu 18.04 LTS de 64 bits)**.
 
 ## 2.1. Preparación del entorno. Dependencias y requisitos necesarios
 
