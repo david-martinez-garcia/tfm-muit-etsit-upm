@@ -20,6 +20,8 @@ tar -xvzpf escenarios_vnx_completos.tar.gz
 
 rm -Rf *.tar.gz
 
+chmod +x *.sh
+
 echo ""
 echo ""
 
