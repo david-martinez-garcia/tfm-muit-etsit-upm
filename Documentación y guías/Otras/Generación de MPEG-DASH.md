@@ -85,7 +85,7 @@ $ cd bento4/bin
 
 ## 3. Generación del _streaming_ MPEG-DASH
 
-Ejecutar el siguiente comando, que generará el _streaming_ MPEG-DASH a partir de las representaciones segmentadas:
+Finalmente, ejecutar el siguiente comando, que generará el _streaming_ MPEG-DASH a partir de las representaciones segmentadas:
 
 ```
 $ ./mp4dash ../../bbb_1_fragmented.mp4 ../../bbb_2_fragmented.mp4 ../../bbb_3_fragmented.mp4 ../../bbb_4_fragmented.mp4 ../../bbb_5_fragmented.mp4
