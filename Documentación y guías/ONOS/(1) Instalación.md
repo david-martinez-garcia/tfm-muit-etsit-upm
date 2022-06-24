@@ -27,7 +27,7 @@ En primer lugar, se actualiza el sistema con los últimos paquetes disponibles. 
 $ sudo apt update && sudo apt dist-upgrade && sudo apt autoremove && sudo apt autoclean
 ```
 
-**Se instalará la versión 2.7.0 - X-Wing (LTS)**.
+**Se instalará la versión 2.7.0 _X-Wing_ (LTS)**.
 
 ### Usuarios
 
