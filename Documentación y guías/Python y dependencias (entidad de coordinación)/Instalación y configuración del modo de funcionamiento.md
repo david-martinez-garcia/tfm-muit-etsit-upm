@@ -1,10 +1,12 @@
-# 1. Instalación de Python con sus dependencias para implementar la entidad de coordinación de la red
+# Entidad de coordinación de la red
+
+## 1. Instalación de Python con sus dependencias
 
 **La instalación se realiza en el _rootfs_ de VNX correspondiente (Ubuntu 18.04 LTS de 64 bits)**.
 
 **NOTA:** Todos los comandos siguientes se ejecutan como usuario `root`.
 
-## 1.1. Preparación del entorno
+### 1.1. Preparación del entorno
 
 En primer lugar, actualizar el sistema:
 
@@ -14,7 +16,7 @@ En primer lugar, actualizar el sistema:
 
 Una vez completada la ejecución, proceder con los siguientes pasos para la instalación del software necesario.
 
-## 1.2. Instalación de Python, Flask y otras dependencias
+### 1.2. Instalación de Python, Flask y otras dependencias
 
 En primer lugar, instalar Python3 y otras dependencias:
 
@@ -42,9 +44,9 @@ Una vez que PIP está actualizado, instalar los siguientes paquetes (PIP instala
 
 Con esto quedaría completada la instalación.
 
-# 2. Configuración del modo de funcionamiento
+## 2. Configuración del modo de funcionamiento
 
-## 2.1. Introducción
+### 2.1. Descripción de los modos de funcionamiento
 
 La entidad de coordinación puede funcionar, para el mecanismo de selección de caché, de los siguientes modos:
 
@@ -54,7 +56,7 @@ La entidad de coordinación puede funcionar, para el mecanismo de selección de 
 - `vCache2`: Siempre se selecciona la caché `vCache2`.
 - `vCache3`: Siempre se selecciona la caché `vCache3`.
 
-## 2.2. Configuración del modo de funcionamiento
+### 2.2. Configuración del modo de funcionamiento
 
 La configuración del modo de funcionamiento debe realizarse, por lo general, antes de ejecutar la entidad de coordinación. Esta configuración se realiza mediante una variable de entorno, llamada `COORDINATOR_MODE`, cuyo valor puede ser cualquiera de los indicados en el apartado anterior. Para configurar esta variable de entorno, en una terminal de comandos, ejecutar:
 
