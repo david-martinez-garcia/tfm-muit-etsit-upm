@@ -35,7 +35,7 @@ Para lanzar este escenario, ejecutar el siguiente _script_:
 $ ./escenario_red_vnx_tcp_run.sh
 ```
 
-Si se quiere detener la ejecución del escenario, ejecutar el siguiente _script_:
+El despliegue y configuración tardará unos minutos en completarse. Si se quiere detener la ejecución del escenario, ejecutar el siguiente _script_:
 
 ```
 $ ./escenario_red_vnx_tcp_stop.sh
@@ -49,7 +49,7 @@ Para lanzar este escenario, ejecutar el siguiente _script_:
 $ ./escenario_red_vnx_dns_run.sh
 ```
 
-Si se quiere detener la ejecución del escenario, ejecutar el siguiente _script_:
+El despliegue y configuración tardará unos minutos en completarse. Si se quiere detener la ejecución del escenario, ejecutar el siguiente _script_:
 
 ```
 $ ./escenario_red_vnx_dns_stop.sh
@@ -57,20 +57,20 @@ $ ./escenario_red_vnx_dns_stop.sh
 
 ## Interacción con los escenarios
 
-Interactuar con las máquinas virtuales según se desee. Las credenciales de acceso a las terminales de comandos son las siguientes:
+Interactuar con las máquinas virtuales según se desee. Las credenciales de acceso a sus terminales de comandos son las siguientes:
 - Usuario: `root`.
 - Contraseña: `xxxx`.
 
-Para interactuar con el navegador Web Mozilla Firefox instalado en los clientes, desde terminales de comandos en el sistema anfitrión, ejecutar:
+Para interactuar con el navegador Web Mozilla Firefox instalado en los clientes, **desde terminales de comandos en el sistema anfitrión**, ejecutar:
 
 **Para la máquina `Cliente1`:**
 ```
-$ ssh root@172.16.0.11
+$ ssh -X root@172.16.0.11
 ```
 
 **Para la máquina `Cliente2`:**
 ```
-$ ssh root@172.16.0.12
+$ ssh -X root@172.16.0.12
 ```
 
 Una vez establecidas las sesiones SSH, ejecutar el siguiente comando, que abrirá una ventana de Mozilla Firefox desde las máquinas virtuales:
