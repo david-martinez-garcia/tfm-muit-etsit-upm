@@ -6,7 +6,7 @@ En este Apartado se describe el procedimiento para instalar el controlador ONOS 
 
 **La instalación se realiza en el _rootfs_ de VNX correspondiente (Ubuntu 18.04 LTS de 64 bits)**.
 
-**IMPORTANTE:** Tal y como se indica en la memoria, si la instalación de ONOS en versión de producción se realiza modificando el _rootfs_ de VNX, ésta queda vinculada a la dirección IP que se asigne al _rootfs_ durante su modificación, por lo que no funcionaría al realizar el despliegue de los escenarios de VNX. En este documento se proporcionan las instrucciones de instalación de manera general.
+**IMPORTANTE:** Tal y como se indica en la memoria, si la instalación de ONOS en versión de producción se realiza modificando el _rootfs_ de VNX, ésta queda vinculada a la dirección IP que se asigne al _rootfs_ durante su modificación, por lo que no funcionaría al realizar el despliegue de los escenarios de VNX. Así, en este documento se proporcionan las instrucciones de instalación de manera general.
 
 **NOTA:** Todos los comandos siguientes se ejecutan como usuario `root`.
 
