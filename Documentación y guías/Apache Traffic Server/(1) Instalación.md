@@ -4,9 +4,9 @@ En este documento se describen los pasos a seguir para instalar Apache Traffic S
 
 Se describen instrucciones para realizar una instalación completa de ATS, incluyendo el soporte para la ejecución de scripts en Lua a través de su plugin correspondiente.
 
-## 1. Preparación del entorno
+**La instalación se realiza en el _rootfs_ de VNX correspondiente (Ubuntu 18.04 LTS de 64 bits)**.
 
-Para instalar ATS se necesita tener un sistema operativo Ubuntu de 64 bits, preferiblemente en versiones LTS, como la 18.04 o la 20.04.
+## 1. Preparación del entorno
 
 En primer lugar, se actualiza el sistema:
 
