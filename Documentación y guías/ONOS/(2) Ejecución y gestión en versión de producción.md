@@ -1,5 +1,5 @@
-# Ejecución y gestión de ONOS
-En este documento se describen los pasos necesarios para ejecutar y gestionar ONOS en versión de producción.
+# Ejecución y gestión de ONOS en versión de producción
+En este documento se describen las instrucciones para ejecutar y gestionar ONOS en versión de producción.
 
 La ejecución puede realizarse de dos maneras diferentes:
 - Utilizando el lanzador del servicio, que se invoca de manera manual.
