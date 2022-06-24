@@ -1,7 +1,7 @@
 # Instalación de VNX
 
-Para instalar VNX, seguir las instrucciones proporcionadas por la documentación oficial.
+**La instalación se realiza en el sistema anfitrión (Ubuntu 18.04 LTS de 64 bits)**.
 
-En primer lugar, realizar las comprobaciones indicadas en el siguiente enlace: http://web.dit.upm.es/vnxwiki/index.php/Vnx-install
-
-En segundo lugar, realizar la instalación manual de VNX siguiendo las indicaciones del siguiente enlace: http://web.dit.upm.es/vnxwiki/index.php/Vnx-install-ubuntu3
+Para instalar VNX, seguir las instrucciones proporcionadas en la documentación oficial, accesible mediante los siguientes enlaces:
+1. http://web.dit.upm.es/vnxwiki/index.php/Vnx-install
+2. http://web.dit.upm.es/vnxwiki/index.php/Vnx-install-ubuntu3
