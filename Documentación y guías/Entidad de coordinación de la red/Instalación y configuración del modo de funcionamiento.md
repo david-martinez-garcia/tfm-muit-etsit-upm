@@ -1,4 +1,4 @@
-# Entidad de coordinación de la red
+# Entidad de coordinación de la red - Instalación y configuración del modo de funcionamiento
 
 ## 1. Instalación de Python con sus dependencias
 
