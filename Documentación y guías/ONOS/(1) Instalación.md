@@ -118,7 +118,7 @@ Para instalar ONOS en versión de producción se necesitan las siguientes depend
 
 Las instrucciones aquí definidas se han obtenido de los enlaces anteriores.
 
-Adicionalmente, se necesitan también `git`, `zip`, `curl`, `unzip`, `python2.7` y `python3`.
+Adicionalmente, se necesitan también `subversion`, `git`, `zip`, `wget`, `curl`, `unzip`, `nano`, `python2.7`, `python3` y `openjdk-11-jdk`.
 
 **NOTA: Por cada vez que se edite una variable de entorno es necesario reiniciar la sesión del usuario para que los cambios surtan efecto, o bien ejecutar el comando `ldconfig`**.
 
@@ -134,16 +134,32 @@ $ sudo apt update && sudo apt dist-upgrade && sudo apt autoremove && sudo apt au
 Después, instalar las dependencias iniciales:
 
 ```
-$ sudo apt install git zip curl unzip python2.7 python3
+$ sudo apt install subversion git zip curl unzip nano python2.7 python3 openjdk-11-jdk
 ```
 
-Una vez completado, se pasa a instalar el resto de dependencias.
+Tras la instalación de OpenJDK, se recomienda configurar las variables `JAVA_HOME` y `JRE_HOME`. Para ello, ejecutar:
+
+```
+$ sudo nano /etc/environment
+```
+
+Y añadir las siguientes líneas al fichero:
+
+`JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"`
+
+`JRE_HOME="/usr/lib/jvm/java-11-openjdk-amd64/jre"`
+
+Modificar, también, la variable `PATH` y añadir al final de ésta lo siguiente:
+
+`...(otras definiciones)...:/usr/lib/jvm/java-11-openjdk-amd64"`
+
+Guardar, cerrar el fichero y reiniciar la sesión de usuario. Una vez completadas estas acciones, se pasa a instalar el resto de dependencias.
 
 ### 2.2.1. Instalación de Apache Maven
 
 **A 26/05/2022 la versión de Maven es la 3.8.5, que es la que aparece reflejada en este documento**.
 
-**Maven se utiliza, actualmente, para compilar las aplicaciones de ejemplo de ONOS y también las desarrolladas por terceros**.
+**Maven se utiliza, actualmente, para compilar las aplicaciones de ONOS**.
 
 Ejecutar los siguientes comandos como `root`.
 
