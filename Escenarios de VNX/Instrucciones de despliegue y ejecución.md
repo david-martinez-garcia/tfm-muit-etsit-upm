@@ -3,18 +3,16 @@
 En este documento se presentan las instrucciones para descargar y lanzar los escenarios completos de VNX desarrollados.
 
 En primer lugar, descargar y ejecutar el _script_ que automatiza la descarga y desempaquetado del _rootfs_ de VNX en el que se basan las máquinas virtuales/contenedores
-de los escenarios:
+de los escenarios. El _script_ está disponible [en este enlace](https://github.com/martinezgarciadavid/privado-tfm-muit-etsit-upm/blob/main/Escenarios%20de%20VNX/Otros%20scripts/download_unpack_rootfs.sh). Una vez descargado, otorgarle permisos de ejecución y ejecutarlo:
 
 ```
-$ wget https://raw.githubusercontent.com/martinezgarciadavid/privado-tfm-muit-etsit-upm/main/Escenarios%20de%20VNX/Otros%20scripts/download_unpack_rootfs.sh
 $ chmod +x download_unpack_rootfs.sh
-$ ./download_unpack_scenarios.sh
+$ ./download_unpack_rootfs.sh
 ```
 
-Después, descargar y ejecutar el _script_ que automatiza la descarga y desempaquetado de los escenarios de VNX:
+Después, descargar y ejecutar el _script_ que automatiza la descarga y desempaquetado de los escenarios de VNX. El _script_ está disponible [en este enlace](https://github.com/martinezgarciadavid/privado-tfm-muit-etsit-upm/blob/main/Escenarios%20de%20VNX/Otros%20scripts/download_unpack_scenarios.sh). Una vez descargado, otorgarle permisos de ejecución y ejecutarlo:
 
 ```
-$ wget https://raw.githubusercontent.com/martinezgarciadavid/privado-tfm-muit-etsit-upm/main/Escenarios%20de%20VNX/Otros%20scripts/download_unpack_scenarios.sh
 $ chmod +x download_unpack_scenarios.sh
 $ ./download_unpack_scenarios.sh
 ```
