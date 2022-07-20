@@ -12,7 +12,7 @@ echo ""
 
 mkdir -p escenarios_vnx_completos
 
-wget https://github.com/martinezgarciadavid/tfm-muit-etsit-upm/releases/download/v1.0.0/escenarios_vnx_completos.tar.gz -P $(pwd)/escenarios_vnx_completos
+wget https://github.com/martinezgarciadavid/privado-tfm-muit-etsit-upm/releases/download/v1.0.0/escenarios_vnx_completos.tar.gz -P $(pwd)/escenarios_vnx_completos
 
 cd $(pwd)/escenarios_vnx_completos
 
