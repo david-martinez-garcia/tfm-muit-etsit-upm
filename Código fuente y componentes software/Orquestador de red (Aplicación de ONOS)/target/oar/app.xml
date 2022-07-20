@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2016-present Open Networking Foundation
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<app name="orquestador" origin="David Martínez García" version="1.0.0"
+     title="Orquestador"
+     category="default"
+     featuresRepo="mvn:es.upm.etsit.muit.tfm.davidmartinezgarcia/orquestador/1.0.0/xml/features"
+     features="orquestador" apps="">
+  <description>Orquestador de red desarrollado en el marco del Trabajo Fin de Máster (TFM).
+
+        Máster Universitario en Ingeniería de Telecomunicación (MUIT) - ETSIT-UPM.
+
+        Título del TFM:
+        Desarrollo de mecanismos de redirección de tráfico en redes de campus basadas en SDN
+        para distribución de contenido multimedia.
+        
+        El Orquestador es una aplicación del controlador SDN ONOS que programa la red.
+        La programación se realiza en base a Intents de ONOS y reglas de flujo OpenFlow con 
+        procesamiento reactivo de paquetes.</description>
+  <artifact>mvn:es.upm.etsit.muit.tfm.davidmartinezgarcia/orquestador/1.0.0</artifact>
+  <artifact>mvn:javax.servlet/servlet-api/2.5</artifact>
+  <artifact>mvn:com.google.code.gson/gson/2.8.9</artifact>
+</app>
