@@ -17,7 +17,7 @@ echo ''
 
 sleep 10
 
-sudo wget https://github.com/martinezgarciadavid/tfm-muit-etsit-upm/releases/download/v1.0.0/vnx_rootfs_lxc_ubuntu64-18.04-v025.tar.gz -P /usr/share/vnx/filesystems/
+sudo wget https://github.com/martinezgarciadavid/privado-tfm-muit-etsit-upm/releases/download/v1.0.0/vnx_rootfs_lxc_ubuntu64-18.04-v025.tar.gz -P /usr/share/vnx/filesystems/
 
 cd /usr/share/vnx/filesystems/
 
