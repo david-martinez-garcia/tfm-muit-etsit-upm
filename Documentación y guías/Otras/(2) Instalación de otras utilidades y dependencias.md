@@ -29,7 +29,7 @@ $ sudo adduser $USER wireshark
 
 ### Herramientas para generación de MPEG-DASH
 
-Consultar el documento [(3) Generación de MPEG-DASH](https://github.com/martinezgarciadavid/privado-tfm-muit-etsit-upm/blob/main/Documentaci%C3%B3n%20y%20gu%C3%ADas/Otras/Generaci%C3%B3n%20de%20MPEG-DASH.md)
+Consultar el documento [(3) Generación de MPEG-DASH](https://github.com/martinezgarciadavid/privado-tfm-muit-etsit-upm/blob/main/Documentaci%C3%B3n%20y%20gu%C3%ADas/Otras/(3)%20Generaci%C3%B3n%20de%20MPEG-DASH.md)
 para realizar la instalación de las herramientas necesarias.
 
 La descarga del cliente de referencia _dash.js_ en versión 4.3.0 puede realizarse desde el siguiente enlace: https://github.com/Dash-Industry-Forum/dash.js/releases/tag/v4.3.0
