@@ -122,7 +122,7 @@ Para instalar ONOS en versión de producción se necesitan las siguientes depend
 
 Las instrucciones aquí definidas se han obtenido de los enlaces anteriores.
 
-Adicionalmente, se necesitan también `subversion`, `git`, `zip`, `wget`, `curl`, `unzip`, `nano`, `python2.7`, `python3` y `openjdk-11-jdk`.
+Adicionalmente, se necesitan también `subversion`, `git`, `zip`, `wget`, `curl`, `unzip`, `nano`, `python2.7`, `python3`, `openjdk-11-jdk` y `g++`.
 
 **NOTA: Por cada vez que se edite una variable de entorno es necesario reiniciar la sesión del usuario para que los cambios surtan efecto, o bien ejecutar el comando `ldconfig`**.
 
@@ -138,7 +138,7 @@ $ sudo apt update && sudo apt dist-upgrade && sudo apt autoremove && sudo apt au
 Después, instalar las dependencias iniciales:
 
 ```
-$ sudo apt install subversion git zip wget curl unzip nano python2.7 python3 openjdk-11-jdk
+$ sudo apt install subversion git zip wget curl unzip nano python2.7 python3 openjdk-11-jdk g++
 ```
 
 Tras la instalación de OpenJDK, se recomienda configurar las variables `JAVA_HOME` y `JRE_HOME`. Para ello, ejecutar:
@@ -161,7 +161,7 @@ Guardar, cerrar el fichero y reiniciar la sesión de usuario. Una vez completada
 
 #### 2.2.1. Instalación de Apache Maven
 
-**A 26/05/2022 la versión de Maven es la 3.8.5, que es la que aparece reflejada en este documento**.
+**A 24/12/2022 la versión de Maven es la 3.8.6, que es la que aparece reflejada en este documento**.
 
 **Maven se utiliza, actualmente, para compilar las aplicaciones de ONOS**.
 
@@ -172,20 +172,20 @@ Primero, se descarga Maven de las fuentes oficiales:
 ```
 # cd /opt
 
-# wget https://dlcdn.apache.org/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz
+# wget https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz
 ```
 
 Después, se desempaqueta:
 
 ```
-# tar xzf apache-maven-3.8.5-bin.tar.gz
+# tar xzf apache-maven-3.8.6-bin.tar.gz
 ```
 
-El directorio de Maven será, por tanto, `/opt/apache-maven-3.8.5/`.
+El directorio de Maven será, por tanto, `/opt/apache-maven-3.8.6/`.
 
 Finalmente, editar el fichero `/etc/environment` y añadir a la variable `PATH` el directorio `/bin` de Apache Maven. Debe quedar de la siguiente manera:
 
-`...(otras definiciones)...:/opt/apache-maven-3.8.5/bin"`.
+`...(otras definiciones)...:/opt/apache-maven-3.8.6/bin"`.
 
 Con esto queda instalado Apache Maven.
 
@@ -193,25 +193,16 @@ Con esto queda instalado Apache Maven.
 
 **Bazel se utiliza, actualmente, para compilar ONOS desde su repositorio**.
 
-Primero, se añade el repositorio APT de Bazel en Ubuntu:
+La mejor manera de obtener Bazel y mantenerlo actualizado es utilizar [Bazelisk](https://github.com/bazelbuild/bazelisk).
+
+Para instalar Bazelisk en el sistema, descargar la última versión desde la [página de _Releases_ que está disponible en el repositorio oficial](https://github.com/bazelbuild/bazelisk/releases). Para sistemas operativos Ubuntu Linux de 64 bits, descargar la variante `bazelisk-linux-amd64`. Una vez descargada, renombrar el archivo a `bazel` y moverlo al directorio `/usr/local/bin`:
 
 ```
-$ sudo apt install apt-transport-https curl gnupg
-
-$ curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel-archive-keyring.gpg
-
-$ sudo mv bazel-archive-keyring.gpg /usr/share/keyrings
-
-$ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
+$ sudo mv bazelisk-linux-amd64 /usr/local/bin/bazel
+$ sudo chmod +x /usr/local/bin/bazel
 ```
 
-Acto seguido, se instala Bazel desde el repositorio añadido. Se instala la última versión.
-
-```
-$ sudo apt update && sudo apt install bazel
-```
-
-Con esto queda instalado Bazel.
+Con esto queda instalado Bazelisk. La próxima vez que se ejecute el comando `bazel`, se descargará la versión adecuada de Bazel en función de los requisitos del repositorio oficial de ONOS.
 
 ### 2.3. Compilación e instalación de ONOS en versión de desarrollo
 
