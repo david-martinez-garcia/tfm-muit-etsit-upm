@@ -103,7 +103,7 @@ Descomprimir el fichero descargado:
 ```
 # tar xfz onos-2.7.0.tar.gz
 # mv onos-2.7.0/ onos/
-# chmod 777 -R /opt/onos
+# chown -R sdn:sdn /opt/onos/
 ```
 
 Con esto queda ONOS en versión de producción instalado.
