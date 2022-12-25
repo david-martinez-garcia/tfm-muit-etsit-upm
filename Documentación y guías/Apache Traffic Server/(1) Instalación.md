@@ -122,7 +122,7 @@ y reiniciar el sistema.
 
 ## 4. Instalación de Apache Traffic Server
 
-La instalación de ATS se realiza mediante su repositorio de GitHub oficial. A continuación, se describen los pasos a seguir.
+La instalación de ATS se realiza desde el código fuente. A continuación, se describen los pasos a seguir.
 
 En primer lugar, se instalan las dependencias necesarias:
 
@@ -130,11 +130,12 @@ En primer lugar, se instalan las dependencias necesarias:
 # apt install autoconf automake libtool pkg-config libmodule-install-perl gcc zlib1g-dev libssl-dev libpcre3-dev libcap-dev libhwloc-dev libncurses5-dev libcurl4-openssl-dev flex
 ```
 
-Una vez instaladas, se obtiene una copia del repositorio oficial y se accede al directorio:
+Una vez instaladas, se obtiene una copia del código fuente, se descomprime y se accede al directorio que lo contiene (se muestra ejemplo para la versión 9.1.4):
 
 ```
-# git clone https://github.com/apache/trafficserver
-# cd trafficserver/
+$ wget https://dlcdn.apache.org/trafficserver/trafficserver-9.1.4.tar.bz2
+$ tar -xjf trafficserver-9.1.4.tar.bz2
+$ cd trafficserver-9.1.4/
 ```
 
 Después, se genera el script de configuración:
