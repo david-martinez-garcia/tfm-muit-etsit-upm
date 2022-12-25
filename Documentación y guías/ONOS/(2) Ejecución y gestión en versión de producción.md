@@ -42,17 +42,18 @@ En segundo lugar, crear el fichero de opciones de ONOS `/opt/onos/options`, que 
 Y escribir en él el siguiente contenido:
 
 ```
-ONOS_USER=sdn
+export ONOS_USER=sdn
 # Optional: add any apps here that you wish to activate by default
-ONOS_APPS=org.onosproject.drivers,org.onosproject.gui2
+export ONOS_APPS=org.onosproject.drivers,org.onosproject.gui2,org.onosproject.openflow,org.onosproject.fwd
 ```
 
 Guardar y salir del editor. En `ONOS_APPS=` es posible especificar una lista de aplicaciones que se activarán con la ejecución del servicio de ONOS. No obstante, también se pueden activar de manera manualmente desde la CLI o la GUI. La activación manual de aplicaciones se describe en el **Apartado 3** del presente documento.
 
-Ejecutar el siguiente comando para dar permisos al fichero que se acaba de crear:
+Ejecutar los siguientes comandos para cambiar el propietario del fichero a `sdn` y, finalmente, configurar los permisos del directorio `/opt/onos/`:
 
 ```
-# chmod 777 /opt/onos/options
+$ sudo chown sdn:sdn /opt/onos/options
+$ sudo chmod -R 774 /opt/onos/
 ```
 
 #### Ejecución, parada, reinicio y comprobación del estado
